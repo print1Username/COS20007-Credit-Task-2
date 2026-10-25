@@ -19,8 +19,7 @@ void Member::Menu(Organizer * o){
         cout << "3. Search Tournament" << endl;
         cout << "4. View Team" << endl;
         cout << endl;
-        cout << ">>\t";
-        cin >> choose;
+        choose = Int(">>", false);
         
         switch (choose){
             case 0:
@@ -30,19 +29,28 @@ void Member::Menu(Organizer * o){
             case 1:
                 cout << "Update profile." << endl;
                 cout << "(Just leave a blank if you don`t want update the profile.)" << endl;
-                UpdateProfile(
-                        String("User Name"),
-                        String("User Email"),
-                        String("User Password")
-                        );
+                {
+                    string username = String("User Name");
+                    string email = String("User Email");
+                    string password = String("User Password");
+                    UpdateProfile(username, email, password);
+                }
                 cout << "Profile Update successful." << endl;
                 break;
             case 2:
                 cout << "View Tournament." << endl;
                 o->PrintTournamentList();
+                break;
             case 3:
                 cout << "Search Tournament." << endl;
-                SearchTournament(o,String("Tournament Name"))->PrintTournament(0);
+                {
+                    Tournament * t = SearchTournament(o, String("Tournament Name"));
+                    if (t != NULL){
+                        t->PrintTournament(0);
+                    } else {
+                        cout << "Tournament is not exist." << endl;
+                    }
+                }
                 break;
             case 4:
                 cout << "View Team." << endl;

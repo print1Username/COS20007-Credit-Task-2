@@ -1,6 +1,7 @@
 #include "User.h"
 #include "Tournament.h"
 #include "Organizer.h"
+#include <stdexcept>
 
 User::User(){
     _username = "";
@@ -33,27 +34,50 @@ string User::String(string input){
     return output;
 }
 
-int User::Int(string input){
-    string o;
-    cout << input << ":\t";
-    getline(cin, o);
-    int output = stoi(o);
-    return output;
+int User::Int(string input, bool allowBlank){
+    while (true){
+        string o;
+        cout << input << ":\t";
+        getline(cin, o);
+
+        if (o == ""){
+            if (allowBlank){
+                return 0;
+            }
+            cout << "Please enter a valid number." << endl;
+            continue;
+        }
+
+        try {
+            size_t pos = 0;
+            int output = stoi(o, &pos);
+            if (pos == o.size()){
+                return output;
+            }
+        } catch (const invalid_argument &) {
+        } catch (const out_of_range &) {
+        }
+
+        cout << "Please enter a valid number." << endl;
+    }
 }
 
 bool User::Bool(string input){
-    string o;
-    bool output;
-    cout << "(1 means true, 0 means false)" << endl;
-    cout << input << ":\t";
-    getline(cin, o);
-    
-    if (o == "1"){
-        output = true;
-    } else {
-        output = false;
+    while (true){
+        string o;
+        cout << "(1 means true, 0 means false)" << endl;
+        cout << input << ":\t";
+        getline(cin, o);
+
+        if (o == "1"){
+            return true;
+        }
+        if (o == "0"){
+            return false;
+        }
+
+        cout << "Please enter 1 or 0." << endl;
     }
-    return output;
 }
 
 void User::UpdateProfile(string username, string email, string password){
@@ -68,7 +92,7 @@ void User::UpdateProfile(string username, string email, string password){
 
 User * User::SearchUser(Organizer * o, string username){
     for (int i = 0; i < o->UserList().size(); i++){
-        if (o->UserList().at(i)->Username() == username){
+        if (o->UserList().at(i)->Username() == username || o->UserList().at(i)->Email() == username){
             return o->UserList().at(i);
             break;
         }
@@ -84,6 +108,14 @@ Tournament * User::SearchTournament(Organizer * o, string tName){
     }
     
     return NULL;
+}
+
+void User::ViewTournament(Organizer * o){
+    o->PrintTournamentList();
+}
+
+void User::ViewTeam(Organizer * o){
+    o->PrintTeamList();
 }
 
 void User::SetTeam(Team * t){

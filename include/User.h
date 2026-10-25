@@ -22,7 +22,7 @@ public:
     string Password();
 
     string String(string input);
-    int Int(string input);
+    int Int(string input, bool allowBlank = true);
     bool Bool(string input);
     
     void UpdateProfile(string username, string email, string password);

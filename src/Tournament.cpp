@@ -18,16 +18,36 @@ string Tournament::TName(){
     return _tName;
 }
 
+int Tournament::TSize(){
+    return _tSize;
+}
+
+string Tournament::TTheme(){
+    return _tTheme;
+}
+
+string Tournament::TVenue(){
+    return _tVenue;
+}
+
 void Tournament::AddTeam(Team * t){
-    if (_teams.size() < _tSize){
-        _teams.push_back(t);
+    if (t == NULL || _teams.size() >= _tSize){
+        return;
     }
+    for (int i = 0; i < _teams.size(); i++){
+        if (_teams.at(i) == t || _teams.at(i)->TeamName() == t->TeamName()){
+            return;
+        }
+    }
+    _teams.push_back(t);
 }
 
 void Tournament::RemoveTeam(string teamName){
-    for(int i = 0; i < _teams.size(); i++){
+    for (int i = 0; i < _teams.size();){
         if(_teams.at(i)->TeamName() == teamName){
             _teams.erase(_teams.begin() + i);
+        } else {
+            i++;
         }
     }
 }
@@ -37,13 +57,28 @@ int Tournament::CountTeam(){
 }
 
 void Tournament::AddRequest(Team * t){
+    if (t == NULL){
+        return;
+    }
+    for (int i = 0; i < _teams.size(); i++){
+        if (_teams.at(i) == t || _teams.at(i)->TeamName() == t->TeamName()){
+            return;
+        }
+    }
+    for (int i = 0; i < _request.size(); i++){
+        if (_request.at(i) == t || _request.at(i)->TeamName() == t->TeamName()){
+            return;
+        }
+    }
     _request.push_back(t);
 }
 
 void Tournament::RemoveRequest(string teamName){
-    for(int i = 0; i < _request.size(); i++){
+    for(int i = 0; i < _request.size();){
         if(_request.at(i)->TeamName() == teamName){
             _request.erase(_request.begin() + i);
+        } else {
+            i++;
         }
     }
 }
@@ -65,14 +100,24 @@ void Tournament::SetTournament(string tName, int tSize, string tTheme, string tV
 }
 
 void Tournament::ManageTeam(string teamName, bool add){
+    bool found = false;
     for (int i = 0; i < _request.size(); i++){
         if (_request.at(i)->TeamName() == teamName){
             if (add){
-                _teams.push_back(_request.at(i));
+                if (_teams.size() >= _tSize){
+                    cout << "Tournament is full; the request remains pending." << endl;
+                    return;
+                }
+                AddTeam(_request.at(i));
             }
             _request.erase(_request.begin() + i);
+            found = true;
+            cout << "Team request managed successfully." << endl;
             break;
         }
+    }
+    if (!found){
+        cout << "Team request is not exist." << endl;
     }
 }
 

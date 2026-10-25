@@ -23,8 +23,7 @@ int main(){
         cout << "1. Login" << endl;
         cout << "2. Register new User" << endl;
         cout << "3. End Program" << endl;
-        cout << ">>\t";
-        cin >> num;
+        num = o->Int(">>", false);
         
         switch (num){
             case 1:
@@ -44,7 +43,12 @@ int main(){
                 break;
             case 2:
                 cout << "Register new user." << endl;
-                mm = new Member(o->String("User Name"), o->String("User Email"),o->String("User Password"));
+                {
+                    string username = o->String("User Name");
+                    string email = o->String("User Email");
+                    string password = o->String("User Password");
+                    mm = new Member(username, email, password);
+                }
                 o->AddUser(mm);
                 cout << "User register successful." << endl;
                 break;

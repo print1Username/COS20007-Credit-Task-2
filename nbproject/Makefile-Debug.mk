@@ -115,10 +115,10 @@ ${OBJECTDIR}/User.o: src/User.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/User.o src/User.cpp
 
-${OBJECTDIR}/main.o: main.cpp
+${OBJECTDIR}/main.o: src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o src/main.cpp
 
 # Subprojects
 .build-subprojects:
@@ -254,7 +254,7 @@ ${OBJECTDIR}/User_nomain.o: ${OBJECTDIR}/User.o src/User.cpp
 	    ${CP} ${OBJECTDIR}/User.o ${OBJECTDIR}/User_nomain.o;\
 	fi
 
-${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp 
+${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/main.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
@@ -262,7 +262,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.cpp;\
+	    $(COMPILE.cc) -g -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o src/main.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
 	fi

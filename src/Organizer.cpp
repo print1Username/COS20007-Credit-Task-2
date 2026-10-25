@@ -63,38 +63,64 @@ User * Organizer::Login(string username, string password){
 }
 
 void Organizer::CreateTournament(string tName, int tSize, string tTheme, string tVenue){
+    if (tName == "" || tSize <= 0){
+        cout << "Tournament name and size must be valid." << endl;
+        return;
+    }
     Tournament * t = new Tournament(tName, tSize, tTheme, tVenue);
     AddTournament(t);
     cout << "Tournament created successful." << endl;
 }
 
 void Organizer::UpdateTournament(int num, string tName, int tSize, string tTheme, string tVenue){
-    if (num <= _tournamentList.size()){
-        _tournamentList.at(num - 1)->SetTournament(tName, tSize, tTheme, tVenue);
-        cout << "Tournament update successful." << endl;
-    } else {
+    if (num < 1 || num > _tournamentList.size()){
         cout << "Tournament is not exist." << endl;
+        return;
     }
+
+    if (tSize < 0){
+        cout << "Tournament size cannot be negative." << endl;
+        return;
+    }
+
+    Tournament * tournament = _tournamentList.at(num - 1);
+    if (tSize > 0 && tSize < tournament->CountTeam()){
+        cout << "Tournament size cannot be smaller than the number of joined teams." << endl;
+        return;
+    }
+
+    tournament->SetTournament(tName, tSize, tTheme, tVenue);
+    cout << "Tournament update successful." << endl;
 }
 
 void Organizer::FormTeam(string teamName, string leaderName){
-    Team * t = new Team(teamName);
+    if (teamName == ""){
+        cout << "Team name cannot be empty." << endl;
+        return;
+    }
+
     for (int i = 0; i < _userList.size(); i++){
         if (_userList.at(i)->Username() == leaderName){
-            _userList.at(i)->SetTeam(t);
-            break;
+            Leader * leader = dynamic_cast<Leader *>(_userList.at(i));
+            if (leader == NULL){
+                cout << "The selected user is not a team leader." << endl;
+                return;
+            }
+            Team * t = new Team(teamName);
+            leader->SetTeam(t);
+            _teamList.push_back(t);
+            return;
         }
     }
-    _teamList.push_back(t);
+    cout << "Team leader is not registered." << endl;
 }
 
 void Organizer::ManageTeamRequested(int num, string teamName, bool add){
-    for(int i = 0; i < _tournamentList.size(); i++){
-        if (i = num - 1){
-            _tournamentList.at(i)->ManageTeam(teamName, add);
-            break;
-        }
+    if (num < 1 || num > _tournamentList.size()){
+        cout << "Tournament is not exist." << endl;
+        return;
     }
+    _tournamentList.at(num - 1)->ManageTeam(teamName, add);
 }
 
 void Organizer::PrintUserList(){
@@ -145,8 +171,7 @@ void Organizer::Menu(Organizer * o){
         cout << "8. Form Team" << endl;
         cout << "9. Manage Team request" << endl;
         cout << endl;
-        cout << ">>\t";
-        cin >> choose;
+        choose = Int(">>", false);
         
         switch (choose){
             case 0:
@@ -156,11 +181,12 @@ void Organizer::Menu(Organizer * o){
             case 1:
                 cout << "Update profile." << endl;
                 cout << "(Just leave a blank if you don`t want update the profile.)" << endl;
-                UpdateProfile(
-                        String("User Name"),
-                        String("User Email"),
-                        String("User Password")
-                        );
+                {
+                    string username = String("User Name");
+                    string email = String("User Email");
+                    string password = String("User Password");
+                    UpdateProfile(username, email, password);
+                }
                 cout << "Profile Update successful." << endl;
                 break;
             case 2:
@@ -169,53 +195,69 @@ void Organizer::Menu(Organizer * o){
                 break;
             case 3:
                 cout << "Search Tournament." << endl;
-                SearchTournament(o,String("Tournament Name"))->PrintTournament(0);
+                {
+                    Tournament * t = SearchTournament(o, String("Tournament Name"));
+                    if (t != NULL){
+                        t->PrintTournament(0);
+                    } else {
+                        cout << "Tournament is not exist." << endl;
+                    }
+                }
                 break;
             case 4:
                 cout << "View Team." << endl;
                 PrintTeamList();
+                break;
             case 5:
                 cout << "Create Tournament." << endl;
-                CreateTournament(
-                        String("Tournament Name"),
-                        Int("Tournament Size"),
-                        String("Tournament Theme"),
-                        String("Tournament Venue")
-                        );
-                cout << "Tournament create successful." << endl;
+                {
+                    string name = String("Tournament Name");
+                    int size = Int("Tournament Size");
+                    string theme = String("Tournament Theme");
+                    string venue = String("Tournament Venue");
+                    CreateTournament(name, size, theme, venue);
+                }
                 break;
             case 6:
                 cout << "Search Tournament." << endl;
-                SearchTournament(o, String("Tournament Name"));
+                {
+                    Tournament * t = SearchTournament(o, String("Tournament Name"));
+                    if (t != NULL){
+                        t->PrintTournament(0);
+                    } else {
+                        cout << "Tournament is not exist." << endl;
+                    }
+                }
                 break;
             case 7:
                 cout << "Update Tournament." << endl;
                 cout << "(Just leave a blank if you don`t want update the information.)" << endl;
-                UpdateTournament(
-                        Int("Tournament number"),
-                        String("Tournament Name"),
-                        Int("Tournament Size"),
-                        String("Tournament Theme"),
-                        String("Tournament Venue")
-                        );
-                cout << "Tournament update successful." << endl;
+                {
+                    int number = Int("Tournament number");
+                    string name = String("Tournament Name");
+                    int size = Int("Tournament Size");
+                    string theme = String("Tournament Theme");
+                    string venue = String("Tournament Venue");
+                    UpdateTournament(number, name, size, theme, venue);
+                }
                 break;
             case 8:
                 cout << "Form Team" << endl;
-                FormTeam(
-                        String("Team Name"),
-                        String("Team Leader")
-                        );
+                {
+                    string teamName = String("Team Name");
+                    string leaderName = String("Team Leader");
+                    FormTeam(teamName, leaderName);
+                }
                 break;
             case 9:
                 cout << "Manage Team request." << endl;
                 PrintRequestList();
-                ManageTeamRequested(
-                        Int("Number of the tournament"),
-                        String("Team Name"),
-                        Bool("Add the team to the tournament?")
-                        );
-                cout << "Team manage successful." << endl;
+                {
+                    int number = Int("Number of the tournament");
+                    string teamName = String("Team Name");
+                    bool add = Bool("Add the team to the tournament?");
+                    ManageTeamRequested(number, teamName, add);
+                }
                 break;
             default:
                 break;

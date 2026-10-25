@@ -24,22 +24,31 @@ void Leader::UpdateTeam(string teamName){
 
 void Leader::AddTeamMember(Organizer * o, string username){
     for (int i = 0; i < o->UserList().size(); i++){
-        if (o->UserList().at(i)->Username() == username){
-            _team->AddMember(o->UserList().at(i));
+        Member * member = dynamic_cast<Member *>(o->UserList().at(i));
+        if (member != NULL && (member->Username() == username || member->Email() == username)){
+            _team->AddMember(member);
             cout << "Member added successful" << endl;
-            break;
+            return;
         }
     }
+    cout << "Registered member is not exist." << endl;
 }
 
 void Leader::JoinTournament(Organizer * o, string tName){
     for (int i = 0; i < o->TournamentList().size(); i++){
         if (o->TournamentList().at(i)->TName() == tName){
-            o->TournamentList().at(i)->AddRequest(_team);
-            cout << "Requested to organizer." << endl;
-            break;
+            Tournament * tournament = o->TournamentList().at(i);
+            int requestCount = tournament->CountRequest();
+            tournament->AddRequest(_team);
+            if (tournament->CountRequest() > requestCount){
+                cout << "Requested to organizer." << endl;
+            } else {
+                cout << "This team has already requested or joined the tournament." << endl;
+            }
+            return;
         }
     }
+    cout << "Tournament is not exist." << endl;
 }
 
 void Leader::Menu(Organizer * o){
@@ -58,8 +67,7 @@ void Leader::Menu(Organizer * o){
         cout << "6. Add Team Member" << endl;
         cout << "7. Join Tournament" << endl;
         cout << endl;
-        cout << ">>\t";
-        cin >> choose;
+        choose = Int(">>", false);
         
         switch (choose){
             case 0:
@@ -69,11 +77,12 @@ void Leader::Menu(Organizer * o){
             case 1:
                 cout << "Update profile." << endl;
                 cout << "(Just leave a blank if you don`t want update the profile.)" << endl;
-                UpdateProfile(
-                        String("User Name"),
-                        String("User Email"),
-                        String("User Password")
-                        );
+                {
+                    string username = String("User Name");
+                    string email = String("User Email");
+                    string password = String("User Password");
+                    UpdateProfile(username, email, password);
+                }
                 cout << "Profile Update successful." << endl;
                 break;
             case 2:
@@ -82,7 +91,14 @@ void Leader::Menu(Organizer * o){
                 break;
             case 3:
                 cout << "Search Tournament." << endl;
-                SearchTournament(o,String("Tournament Name"))->PrintTournament(0);
+                {
+                    Tournament * t = SearchTournament(o, String("Tournament Name"));
+                    if (t != NULL){
+                        t->PrintTournament(0);
+                    } else {
+                        cout << "Tournament is not exist." << endl;
+                    }
+                }
                 break;
             case 4:
                 cout << "View Team." << endl;
@@ -94,7 +110,7 @@ void Leader::Menu(Organizer * o){
                 break;
             case 6:
                 cout << "Add Team Member" << endl;
-                AddTeamMember(o,String("Member name"));
+                AddTeamMember(o,String("Member username or email"));
                 break;
             case 7:
                 cout << "Join Tournament" << endl;

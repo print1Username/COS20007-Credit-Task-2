@@ -24,10 +24,12 @@ void OrganizerTestClass::TestAddUser(){
 
 void OrganizerTestClass::TestRemoveUser(){
     Organizer * o = new Organizer();
-    Leader * l = new Leader();
+    Leader * l = new Leader("Leader", "leader@gmail.com", "password");
     o->AddUser(l);
-    o->RemoveUser("");
+    o->RemoveUser("Leader");
     CPPUNIT_ASSERT(o->CountUser() == 1);
+    CPPUNIT_ASSERT(o->Login("Leader", "password") == NULL);
+    CPPUNIT_ASSERT(o->Login("", "") == o);
 }
 
 void OrganizerTestClass::TestCreateTournament(){

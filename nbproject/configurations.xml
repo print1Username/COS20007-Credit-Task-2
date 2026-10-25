@@ -24,7 +24,7 @@
       <itemPath>src/Team.cpp</itemPath>
       <itemPath>src/Tournament.cpp</itemPath>
       <itemPath>src/User.cpp</itemPath>
-      <itemPath>main.cpp</itemPath>
+      <itemPath>src/main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -141,7 +141,7 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/src/LeaderTestClass.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -252,7 +252,7 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/src/LeaderTestClass.cpp" ex="false" tool="1" flavor2="0">
       </item>

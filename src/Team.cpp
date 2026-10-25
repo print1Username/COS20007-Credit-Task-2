@@ -17,7 +17,24 @@ void Team::SetTeamName(string teamName){
 }
 
 void Team::AddMember(User * u){
+    if (u == NULL){
+        return;
+    }
+    for (int i = 0; i < _members.size(); i++){
+        if (_members.at(i) == u){
+            return;
+        }
+    }
     _members.push_back(u);
+}
+
+void Team::RemoveMember(string member){
+    for (int i = 0; i < _members.size(); i++){
+        if (_members.at(i)->Username() == member || _members.at(i)->Email() == member){
+            _members.erase(_members.begin() + i);
+            break;
+        }
+    }
 }
 
 int Team::CountMember(){
