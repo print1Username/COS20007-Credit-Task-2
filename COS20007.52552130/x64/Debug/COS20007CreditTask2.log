@@ -1,0 +1,14 @@
+﻿  main.cpp
+  Leader.cpp
+  Member.cpp
+  Organizer.cpp
+C:\Users\User\Downloads\COS20007-Credit-Task-2\src\Organizer.cpp(34,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\User\Downloads\COS20007-Credit-Task-2\src\Organizer.cpp(52,32): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Team.cpp
+C:\Users\User\Downloads\COS20007-Credit-Task-2\src\Team.cpp(24,25): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Tournament.cpp
+C:\Users\User\Downloads\COS20007-Credit-Task-2\src\Tournament.cpp(36,23): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\User\Downloads\COS20007-Credit-Task-2\src\Tournament.cpp(52,25): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  User.cpp
+  Generating Code...
+  COS20007CreditTask2.vcxproj -> C:\Users\User\Downloads\COS20007-Credit-Task-2\x64\Debug\COS20007CreditTask2.exe

@@ -5,7 +5,7 @@
 #include "Team.h"
 using namespace std;
 
-main(){
+int main(){
     Organizer * o = new Organizer("organizer", "organizer@gmail.com", "password");
     Leader * l = new Leader("leader", "leader@gmail.com", "password");
     Member * m = new Member("member", "member@gmail.com", "password");
