@@ -11,6 +11,17 @@
 *.a
 *.lib
 
+# Visual Studio compiler and linker outputs
+*.pdb
+*.idb
+*.ilk
+*.pch
+*.ipch
+*.recipe
+*.tlog/
+*.lastbuildstate
+*.log
+
 # NetBeans user-specific files
 /.vs/
 /nbproject/private/
@@ -31,6 +42,7 @@
 /x86/
 /Debug/
 /Release/
+/COS20007.52552130/
 
 # CLion and CMake generated files
 /.idea/
