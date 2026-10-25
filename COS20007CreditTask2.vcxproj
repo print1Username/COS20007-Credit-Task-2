@@ -135,8 +135,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Leader.cpp" />
+    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Member.cpp" />
     <ClCompile Include="src\Organizer.cpp" />
     <ClCompile Include="src\Team.cpp" />
