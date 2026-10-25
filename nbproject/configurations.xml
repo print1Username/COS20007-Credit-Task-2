@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>include/Leader.h</itemPath>
+      <itemPath>include/Member.h</itemPath>
+      <itemPath>include/Organizer.h</itemPath>
+      <itemPath>include/Team.h</itemPath>
+      <itemPath>include/Tournament.h</itemPath>
+      <itemPath>include/User.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>src/Leader.cpp</itemPath>
+      <itemPath>src/Member.cpp</itemPath>
+      <itemPath>src/Organizer.cpp</itemPath>
+      <itemPath>src/Team.cpp</itemPath>
+      <itemPath>src/Tournament.cpp</itemPath>
+      <itemPath>src/User.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f3"
+                     displayName="LeaderTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/src/LeaderTestClass.cpp</itemPath>
+        <itemPath>tests/include/LeaderTestClass.h</itemPath>
+        <itemPath>tests/src/LeaderTestRunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="OrganizerTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/src/OrganizerTestClass.cpp</itemPath>
+        <itemPath>tests/include/OrganizerTestClass.h</itemPath>
+        <itemPath>tests/src/OrganizerTestRunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="UserTest" projectFiles="true" kind="TEST">
+        <itemPath>tests/src/UserTestClass.cpp</itemPath>
+        <itemPath>tests/include/UserTestClass.h</itemPath>
+        <itemPath>tests/src/UserTestRunner.cpp</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>tests/include</pElem>
+          </incDir>
+        </ccTool>
+      </compileType>
+      <item path="src/Leader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Leader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Member.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Member.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Organizer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Organizer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Team.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Team.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Tournament.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Tournament.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/User.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/User.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/src/LeaderTestClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/include/LeaderTestClass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/src/LeaderTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/src/OrganizerTestClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/include/OrganizerTestClass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/src/OrganizerTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/src/UserTestClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/include/UserTestClass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/src/UserTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>tests/include</pElem>
+          </incDir>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="src/Leader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Leader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Member.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Member.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Organizer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Organizer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Team.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Team.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Tournament.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Tournament.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/User.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/User.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/src/LeaderTestClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/include/LeaderTestClass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/src/LeaderTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/src/OrganizerTestClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/include/OrganizerTestClass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/src/OrganizerTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/src/UserTestClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/include/UserTestClass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/src/UserTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

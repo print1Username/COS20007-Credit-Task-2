@@ -1,0 +1,45 @@
+# Build outputs and dependency files
+/build/
+/dist/
+.dep.inc
+*.o
+*.obj
+*.d
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+
+# NetBeans user-specific files
+/.vs/
+/nbproject/private/
+/nbproject/Package-*.bash
+
+# VS Code workspace settings
+/.vscode/
+
+# Visual Studio 2022 user files and build outputs
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+/ipch/
+/x64/
+/x86/
+/Debug/
+/Release/
+
+# CLion and CMake generated files
+/.idea/
+/cmake-build-*/
+/CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Task documents
+*.txt
+*.pdf
